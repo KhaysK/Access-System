@@ -168,7 +168,7 @@ int main() {
     bool isFound = false;
 
 
-// Here I created different users and added them into the arrays
+                                                                                            // Here I created different users and added them into the arrays
 #pragma region Creating_users
     Director director("Tormasov Alexandr Gennadievich","Russia",400);
     InnopolisStuff.push_back(director);
@@ -283,8 +283,8 @@ int main() {
         }
 
         else if(position == "admin"){
-            // This condition for admins here admin can create
-            // new user or set to exist user new level
+                                                                                     // This condition for admins here admin can create
+                                                                                    // new user or set to exist user new level
 
             cout << "Please enter your password:" << endl;
             cin >> password;
@@ -305,8 +305,8 @@ int main() {
                         cin >> code;
 
                         if (code == 1) {
-                            // This condition ask for information about new user
-                            //and creates user of appropriate type
+                                                                                                        // This condition ask for information about new user
+                                                                                                       //and creates user of appropriate type
 
                             cout << endl << "Enter name of user:" << endl;
                             cin.ignore();
@@ -395,13 +395,13 @@ int main() {
                                 Admin newAdmin(name, password, citizenship);
                                 Admins.push_back(newAdmin);
                             }
-                        }                  // End of creating part
+                        }                                                                       // End of creating part
 
                         else if (code == 2) {
 
-                            // This condition asks information about exist user
-                            // searches this user in the array and sets new
-                            // level to this user
+                                                                                               // This condition asks information about exist user
+                                                                                              // searches this user in the array and sets new
+                                                                                             // level to this user
 
                             cout << endl << "Enter name of user:" << endl;
                             cin.ignore();
@@ -441,12 +441,12 @@ int main() {
                             }
                             if(!isFound)
                                 cout << "User does not exist" << endl;
-                        }            // End of level setting part
+                        }                                                                                 // End of level setting part
 
                         else if (code == 3){
-                            // This condition asks information about exist user
-                            // searches this user in the array and sets new
-                            // room to this user if it possible
+                                                                                                    // This condition asks information about exist user
+                                                                                                   // searches this user in the array and sets new
+                                                                                                  // room to this user if it possible
                             
                             cout << endl << "Enter name of user:" << endl;
                             cin.ignore();
@@ -486,7 +486,7 @@ int main() {
                                 }
                             }
 
-                        }            // End of room setting part
+                        }                                                                                         // End of room setting part
 
                         else if (code == 4) break;
                         else if (code == 0) break;
