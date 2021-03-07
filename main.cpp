@@ -421,9 +421,9 @@ int main() {
                                         cout << endl << "Enter what level to set:" << endl;
                                         cin >> level;
                                         transform(level.begin(), level.end(), level.begin(),
-                                                  [](unsigned char c) {return tolower(c);});              // This part taking name of user
-                                        if (level =="green")                                             // checks is user exist and print info
-                                        {                                                               // then ask level and set this level to user
+                                                  [](unsigned char c) {return tolower(c);});              
+                                        if (level =="green")                                             
+                                        {                                                               
                                             InnopolisStuff[i].setLevel(GREEN);
                                             break;
                                         }
