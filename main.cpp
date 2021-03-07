@@ -289,7 +289,7 @@ int main() {
 
         else if(position == "admin"){
                                                                                      // This condition for admins here admin can create
-                                                                                    // new user or set to exist user new level
+                                                                                    // new user or set to exist user new level or room
 
             cout << "Please enter your password:" << endl;
             cin >> password;
