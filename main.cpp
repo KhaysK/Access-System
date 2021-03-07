@@ -57,7 +57,7 @@ public:
         this->name = move(name);
         this->position = move(position);
     }
-        // Constructor for professor and director
+        
     User(string name, string position,string citizenship,int cabinet, Levels card) :
             accessCard(card,cabinet){
                // Constructor for professor and director
