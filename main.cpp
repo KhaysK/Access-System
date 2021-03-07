@@ -303,7 +303,6 @@ int main() {
                         cin >> code;
 
                         if (code == 1) {
-
                             // This condition ask for information about new user
                             //and creates user of appropriate type
 
@@ -394,7 +393,7 @@ int main() {
                                 Admin newAdmin(name, password, citizenship);
                                 Admins.push_back(newAdmin);
                             }
-                        }                  // This part asking for data of new user and create appropriate user
+                        }                  // End of creating part
 
                         else if (code == 2) {
 
@@ -440,9 +439,13 @@ int main() {
                             }
                             if(!isFound)
                                 cout << "User does not exist" << endl;
-                        }            // This part sets new level to old user
+                        }            // End of level setting part
 
                         else if (code == 3){
+                            // This condition asks information about exist user
+                            // searches this user in the array and sets new
+                            // room to this user if it possible
+                            
                             cout << endl << "Enter name of user:" << endl;
                             cin.ignore();
                             getline(cin , name);
@@ -481,7 +484,7 @@ int main() {
                                 }
                             }
 
-                        }            // this part sets exits room to exist user
+                        }            // End of room setting part
 
                         else if (code == 4) break;
                         else if (code == 0) break;
