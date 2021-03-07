@@ -36,7 +36,7 @@ This project is an implementation of access system in the Unnopolis University. 
        Khaysadykov Khabib Jamaludinovich
        Khalilov Vagif Ruslanovich
 </pre>
-<i>P.S. bellow was mentioned some user for checking program, more user you can find in "region Creating_users" - line 170</i>
+<i>P.S. abow was mentioned some user for checking program, more user you can find in "region Creating_users" - line 170</i>
 <br>
 <br>
 <b> 4 access levels </b>
