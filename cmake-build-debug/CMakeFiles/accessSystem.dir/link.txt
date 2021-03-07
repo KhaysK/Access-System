@@ -1,0 +1,3 @@
+"C:\Programm\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\accessSystem.dir/objects.a
+C:\Programm\MinGW\bin\ar.exe cr CMakeFiles\accessSystem.dir/objects.a @CMakeFiles\accessSystem.dir\objects1.rsp
+C:\Programm\MinGW\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\accessSystem.dir/objects.a -Wl,--no-whole-archive  -o accessSystem.exe -Wl,--out-implib,libaccessSystem.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\accessSystem.dir\linklibs.rsp
