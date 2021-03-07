@@ -158,6 +158,8 @@ public:
 
 
 
+//-------------------------------------------------------MAIN_FUNCTION-------------------------------------------------------------
+
 int main() {
     vector<User> InnopolisStuff;
     vector<Admin> Admins;
