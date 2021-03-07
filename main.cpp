@@ -111,6 +111,7 @@ public:
     }
 
     void setRoom(int roomNo){
+        // This method set given room to user through which the method was called
         if(accessCard.hasCabinet){
             accessCard.cabinet = roomNo;
             cout << "Room has been assigned!" << endl;
