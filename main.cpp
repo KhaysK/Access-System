@@ -8,7 +8,7 @@
 using namespace std;
 
 enum Levels {
-    // Level of access
+    // Levels of access
     NO_LEVEL,
     GREEN,
     YELLOW,
