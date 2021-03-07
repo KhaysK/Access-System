@@ -48,13 +48,14 @@ public:
     Card accessCard;
     string name,citizenship;
     string position;
-
+        // Constructor for student, lab employee and admin
     User(string name, string position , string citizenship, Levels card) :
             accessCard(card){
         this->citizenship = move(citizenship);
         this->name = move(name);
         this->position = move(position);
     }
+        // Constructor for professor and director
     User(string name, string position,string citizenship,int cabinet, Levels card) :
             accessCard(card,cabinet){
         this->citizenship = move(citizenship);
