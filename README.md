@@ -1,5 +1,5 @@
 
-# Home assigment #2, Khabib Khaysadykov B20-03
+# Home assigment #2 (updated to 3), Khabib Khaysadykov B20-03
 
 <hr>
 <h3>About project:</h3>
@@ -36,25 +36,33 @@ This project is an implementation of access system in the Unnopolis University. 
        Khaysadykov Khabib Jamaludinovich
        Khalilov Vagif Ruslanovich
 </pre>
+<li>Guests</li>
+<pre>
+    3 Guests available :
+       John Conor
+       Kirilin Anton Egorovich
+       Akhmetov Burbo Alievich
+</pre>
 <i>P.S. abow was mentioned some user for checking program, more user you can find in "region Creating_users" - line 170</i>
 <br>
 <br>
-<b> 4 access levels </b>
+<b> 5 access levels </b>
 <li>Red</li>
 <li>Yellow</li>
 <li>Green</li>
 <li>No_Level</li>
+<li>Blue</li>
 <br>
-<b> 18 rooms </b>
+<b> 21 rooms </b>
 
 <table>  
-<tr><th>Class room</th><th>Lecture halls</th><th>Conferense room</th><th>Personal cabinets</th></tr>  
-<tr><td>312</td><td>105</td><td>404</td><td>400</td></tr>  
-<tr><td>313</td><td>106</td><td>405</td><td>401</td></tr>  
-<tr><td>314</td><td>107</td><td>406</td><td>402</td></tr>  
-<tr><td>317</td><td>108</td><td>407</td><td>403</td></tr>  
-<tr><td>-</td><td>-</td><td>-</td><td>408</td></tr>  
-<tr><td>-</td><td>-</td><td>-</td><td>409</td></tr>  
+<tr><th>Conferense on 1th floor</th><th>Class room</th><th>Lecture halls</th><th>Conferense room</th><th>Personal cabinets</th></tr>  
+<tr><td>101</td><td>312</td><td>105</td><td>404</td><td>400</td></tr>  
+<tr><td>102</td><td>313</td><td>106</td><td>405</td><td>401</td></tr>  
+<tr><td>103</td><td>314</td><td>107</td><td>406</td><td>402</td></tr>  
+<tr><td>-</td><td>317</td><td>108</td><td>407</td><td>403</td></tr>  
+<tr><td>-</td><td>-</td><td>-</td><td>-</td><td>408</td></tr>  
+<tr><td>-</td><td>-</td><td>-</td><td>-</td><td>409</td></tr>  
 </table>  
 <br>
 Programm by itself is a terminal program where available 2 options: user menu and admin menu
@@ -75,6 +83,8 @@ Add new user
 Set level to user
 Set room to user
 Exit
+Emergency situation
+Emergency situation is over
 Close program
 ```
 <br>
