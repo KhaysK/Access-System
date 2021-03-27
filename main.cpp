@@ -8,7 +8,7 @@
 using namespace std;
 
 enum Levels {
-    // Levels of access
+    BLUE,
     NO_LEVEL,
     GREEN,
     YELLOW,
@@ -21,9 +21,11 @@ public:
     Levels accessLevel;
     bool hasCabinet = false;
     int cabinet = -1484;
+    static inline bool isEmergencySituation = false;
 
     // Here I have created list of rooms in the university
-    vector<pair<int, Levels>> rooms {make_pair(105,GREEN), make_pair(106,GREEN), make_pair(107,GREEN),
+    vector<pair<int, Levels>> rooms {make_pair(101,BLUE), make_pair(102,BLUE), make_pair(103,BLUE),
+                                     make_pair(105,GREEN), make_pair(106,GREEN), make_pair(107,GREEN),
                                      make_pair(108,GREEN),make_pair(313,NO_LEVEL),make_pair(314,NO_LEVEL),
                                      make_pair(317,NO_LEVEL),make_pair(312,NO_LEVEL),make_pair(404,YELLOW),
                                      make_pair(405,YELLOW),make_pair(406,YELLOW),make_pair(407,YELLOW),
@@ -49,18 +51,15 @@ public:
     Card accessCard;
     string name,citizenship;
     string position;
-        
+
     User(string name, string position , string citizenship, Levels card) :
             accessCard(card){
-                // Constructor for student, lab employee and admin
         this->citizenship = move(citizenship);
         this->name = move(name);
         this->position = move(position);
     }
-        
     User(string name, string position,string citizenship,int cabinet, Levels card) :
             accessCard(card,cabinet){
-               // Constructor for professor and director
         this->citizenship = move(citizenship);
         this->name = move(name);
         this->position = move(position);
@@ -79,21 +78,28 @@ public:
         else if(accessCard.accessLevel == GREEN) cout << "Green" << endl;
         else if(accessCard.accessLevel == YELLOW) cout << "Yellow" << endl;
         else if(accessCard.accessLevel == RED) cout << "Red" << endl;
+        else if(accessCard.accessLevel == BLUE) cout << "Blue" << endl;
         if(accessCard.hasCabinet)
             cout << "Personal cabinet: " << accessCard.cabinet << endl;
         cout << "Rooms available: [ ";
         for(pair<int, Levels> room : accessCard.rooms){
-            if(room.second <= accessCard.accessLevel)
+            if((room.second <= accessCard.accessLevel) || ((accessCard.accessLevel == BLUE) && (room.second == GREEN)))
                 cout << room.first << ", ";
         }
         cout << "] " << endl;
+        cout << "Emergency situation: ";
+        if(Card::isEmergencySituation)
+            cout << "true" << endl;
+        else
+            cout << "false" << endl;
     }
     void openRoom(int roomNo){
         // This method goes trough array of rooms and checks does user has access to given room
         // and prints appropriate massage
 
         for(pair<int, Levels> room : accessCard.rooms){
-            if((room.first == roomNo && accessCard.accessLevel >= room.second) || roomNo == accessCard.cabinet ) {
+            if((room.first == roomNo && accessCard.accessLevel >= room.second) || roomNo == accessCard.cabinet || Card::isEmergencySituation ==
+                                                                                                                  true || (room.first == roomNo && room.second == GREEN && accessCard.accessLevel == BLUE )) {
                 cout << "The room is open, welcome!" << endl;
                 return;
             }
@@ -111,7 +117,6 @@ public:
     }
 
     void setRoom(int roomNo){
-        // This method set given room to user through which the method was called
         if(accessCard.hasCabinet){
             accessCard.cabinet = roomNo;
             cout << "Room has been assigned!" << endl;
@@ -120,8 +125,8 @@ public:
     }
 };
 
-                                                                                    // Here below I have created classes for different
-                                                                                    // users and appropriate constructors
+// Here I have created classes for different
+// users and appropriate constructors
 class Student: public User{
 public:
     Student(string name,string citizenship, Levels card = NO_LEVEL) :
@@ -141,7 +146,6 @@ public:
     Professor(string name, string citizenship, int cabinet, Levels card = YELLOW) :
               User(move(name),"Professor",move(citizenship),move(cabinet),card){
     }
-
 };
 
 class Director: public User{
@@ -161,9 +165,13 @@ public:
     }
 };
 
+class Guest: public User{
+public:
+    Guest(string name,string citizenship, Levels card = BLUE):
+    User(move(name), "Guest", move(citizenship),card){}
+};
 
 
-//-------------------------------------------------------MAIN_FUNCTION-------------------------------------------------------------
 
 int main() {
     vector<User> InnopolisStuff;
@@ -173,8 +181,14 @@ int main() {
     bool isFound = false;
 
 
-                                                                                            // Here I created different users and added them into the arrays
+// Here I created different users and added them into the arrays
 #pragma region Creating_users
+    Guest firstGuest("John Conor","America");
+    Guest secondGuest("Kirilin Anton Egorovich","Russia");
+    Guest thirdGuest("Akhmetov Burbo Alievich","Kazakhstan");
+    InnopolisStuff.push_back(firstGuest);
+    InnopolisStuff.push_back(secondGuest);
+    InnopolisStuff.push_back(thirdGuest);
     Director director("Tormasov Alexandr Gennadievich","Russia",400);
     InnopolisStuff.push_back(director);
     Admin firstAdmin("Voronov Alexandr Mikhailovich", "123456789qwerty", "Russia");
@@ -249,7 +263,7 @@ int main() {
                   [](unsigned char c){ return tolower(c); });
 
         if (position == "student" || position == "lab employee" || position == "professor"
-        || position == "director"){
+        || position == "director" || position == "guest"){
             cout << "Please enter your name:" << endl;
             getline(cin, name);
 
@@ -288,8 +302,8 @@ int main() {
         }
 
         else if(position == "admin"){
-                                                                                     // This condition for admins here admin can create
-                                                                                    // new user or set to exist user new level or room
+            // This condition for admins here admin can create
+            // new user or set to exist user new level
 
             cout << "Please enter your password:" << endl;
             cin >> password;
@@ -305,13 +319,15 @@ int main() {
                         cout << "[2] Set level to user" << endl;
                         cout << "[3] Set room to user" << endl;
                         cout << "[4] Exit" << endl;
+                        cout << "[5] Emergency situation" << endl;
+                        cout << "[6] Emergency situation is over" << endl;
                         cout << "[0] Close program" << endl;
 
                         cin >> code;
 
                         if (code == 1) {
-                                                                                                        // This condition ask for information about new user
-                                                                                                       //and creates user of appropriate type
+                            // This condition ask for information about new user
+                            //and creates user of appropriate type
 
                             cout << endl << "Enter name of user:" << endl;
                             cin.ignore();
@@ -327,7 +343,10 @@ int main() {
                             if (position == "student") {
                                 Student newStudent(name,citizenship);
                                 InnopolisStuff.push_back(newStudent);
-                            } else if (position == "lab employee") {
+                            } else if (position == "guest") {
+                                Guest newGuest(name,citizenship);
+                                InnopolisStuff.push_back(newGuest);
+                            }else if (position == "lab employee") {
                                 Lab_employee newLabEmployee(name,citizenship);
                                 InnopolisStuff.push_back(newLabEmployee);
                             } else if (position == "professor") {
@@ -400,13 +419,13 @@ int main() {
                                 Admin newAdmin(name, password, citizenship);
                                 Admins.push_back(newAdmin);
                             }
-                        }                                                                       // End of creating part
+                        }                  // End of creating part
 
                         else if (code == 2) {
 
-                                                                                               // This condition asks information about exist user
-                                                                                              // searches this user in the array and sets new
-                                                                                             // level to this user
+                            // This condition asks information about exist user
+                            // searches this user in the array and sets new
+                            // level to this user
 
                             cout << endl << "Enter name of user:" << endl;
                             cin.ignore();
@@ -421,9 +440,9 @@ int main() {
                                         cout << endl << "Enter what level to set:" << endl;
                                         cin >> level;
                                         transform(level.begin(), level.end(), level.begin(),
-                                                  [](unsigned char c) {return tolower(c);});              
-                                        if (level =="green")                                             
-                                        {                                                               
+                                                  [](unsigned char c) {return tolower(c);});              // This part taking name of user
+                                        if (level =="green")                                             // checks is user exist and print info
+                                        {                                                               // then ask level and set this level to user
                                             InnopolisStuff[i].setLevel(GREEN);
                                             break;
                                         }
@@ -446,13 +465,13 @@ int main() {
                             }
                             if(!isFound)
                                 cout << "User does not exist" << endl;
-                        }                                                                                 // End of level setting part
+                        }            // End of level setting part
 
                         else if (code == 3){
-                                                                                                    // This condition asks information about exist user
-                                                                                                   // searches this user in the array and sets new
-                                                                                                  // room to this user if it possible
-                            
+                            // This condition asks information about exist user
+                            // searches this user in the array and sets new
+                            // room to this user if it possible
+
                             cout << endl << "Enter name of user:" << endl;
                             cin.ignore();
                             getline(cin , name);
@@ -491,9 +510,17 @@ int main() {
                                 }
                             }
 
-                        }                                                                                         // End of room setting part
+                        }            // End of room setting part
 
                         else if (code == 4) break;
+                        else if (code == 5) {
+                            Card::isEmergencySituation = true;
+                            cout << "Emergency situation is started" << endl;
+                        }
+                        else if (code == 6) {
+                            Card::isEmergencySituation = false;
+                            cout << "Emergency situation is over" << endl;
+                        }
                         else if (code == 0) break;
                         else cout << "Command are not recognized" << endl;
 
