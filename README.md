@@ -38,7 +38,7 @@ This project is an implementation of access system in the Unnopolis University. 
 </pre>
 <li>Guests</li>
 <pre>
-    3 Guests available :
+    3 guests available :
        John Conor
        Kirilin Anton Egorovich
        Akhmetov Burbo Alievich
