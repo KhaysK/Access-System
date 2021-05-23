@@ -1,5 +1,5 @@
 
-# Home assigment #2 (updated to 3), Khabib Khaysadykov B20-03
+# Room Access System
 
 <hr>
 <h3>About project:</h3>
