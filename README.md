@@ -116,7 +116,6 @@ To build the project, use the following command in bash terminal:
 
 ```bash
 cd <source path of Project>
-cmake -Bbuild -H.
-cmake --build build --target all
+gcc main.cpp -o accessSystem
 ```
 
